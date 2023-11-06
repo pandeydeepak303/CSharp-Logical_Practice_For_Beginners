@@ -1,0 +1,653 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Net.WebSockets;
+using System.Reflection.Metadata;
+using System.Runtime.Serialization.Formatters;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading;
+using System.Threading.Channels;
+using System.Xml.Schema;
+
+namespace Practice
+{
+    public class test
+    {
+        public int _id;
+        public string _name;
+
+
+        public test()
+        {
+
+
+        }
+        public test(int id, string name)
+        {
+            _id = id;
+            _name = name;
+            Console.WriteLine(" this is prm contructor");
+        }
+
+        public test(test obj)
+        {
+            _name = obj._name;
+            _id = obj._id;
+
+            Console.WriteLine(" this is  copy constructor");
+
+        }
+        public void detailsof()
+        {
+            Console.WriteLine(_id + _name);
+        }
+
+        public void display()
+        {
+            Console.WriteLine(_id + "and name is " + _name);
+        }
+
+        public void Bitwise()
+        {
+            int x = 45;
+            int y = 20;
+            var result = x ^ y;
+            Console.WriteLine("Bitwise XOR: " + result);
+        }
+
+        //public void SortArray()
+        // {
+        //    int[] array = { 1, 2, 53, 5, 7, 78, 89, 7 };
+        //    int temp;
+
+        //    for (int i = 0; i <= array.Length-1; i++)
+        //    {
+        //        for (int j = i+1; j < array.Length; j++)
+        //        {
+        //            if (array[i] > array[j])
+        //            {
+        //                temp = array[i];
+        //                array[i] = array[j];
+        //                array[j] = temp;
+        //            }
+        //        }     
+        //    }
+        //    for (int j = 0; j < array.Length; j++)
+        //    {
+
+        //        Console.WriteLine(array[j] );
+        //    }
+        //}
+
+        public void SortArray()
+        {
+
+            int[] array = { 4, 6, 8, 67, 5, 454, 23, 2, 34, 5 };
+
+            int temp;
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                for (int j = i; j < array.Length; j++)
+                {
+                    if (array[i] > array[j])
+                    {
+                        temp = array[j];
+                        array[j] = array[i];
+                        array[i] = temp;
+                    }
+                }
+            }
+            
+            for (int k = 0; k < array.Length; k++)
+            {
+                Console.WriteLine(array[k]);
+            }
+        }
+        public static void sortArrayAvoidMinvalue()
+        {
+            int[] array = { -5, 6, -5, 8, 67, -5, 454, 23, 2, 34, -5 };
+            int temp;
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                for (int j = i; j < array.Length; j++)
+                {
+                    if (array[i] > array[j])
+                    {
+                        if (array[j] == -5)
+                            continue;
+                        temp = array[j];
+                        array[j] = array[i];
+                        array[i] = temp;
+                    }
+                }
+            }
+            for (int k = 0; k < array.Length; k++)
+            {
+                Console.WriteLine(array[k]);
+            }
+        }
+
+        public static void numberspresentornot()
+        {
+            int[] array = { 1, 5, 3, 5, 7, 3, 6, 8, 6 };
+            for (int i = 0; i < array.Length; i++)
+            {
+                for (int j = i + 1; j < array.Length; j++)
+                {
+
+                    if (array[i] == array[j])
+
+                    {
+                        Console.WriteLine(" Number is Present ");
+                    }
+                    else
+                    {
+                        Console.WriteLine("number is not prest");
+
+                    }
+                }
+            }
+
+        }
+        public static void numberspresentornotUserInput()
+        {
+            Console.WriteLine("Enter Any 10 number ");
+            int[] arr = new int[10];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = i + 1; j < arr.Length; j++)
+                {
+                    if (i == arr[j])
+                        Console.WriteLine(true);
+                }
+            }
+        }
+
+
+        public static void Array3()
+        {
+            Console.WriteLine("Enter Any 10 number ");
+            int[] arr = new int[10];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            int sum = 0;
+            for (int j = 0; j < arr.Length; j++)
+            {
+                sum += arr[j];
+            }
+            Console.WriteLine("Total count Is :{0}", sum);
+        }
+        public static void ChekNumberPresentOrNot()
+        {
+            Console.WriteLine("Enter Any  number ");
+            int number = Convert.ToInt32(Console.ReadLine());
+            int[] arr = { 2, 4, 5, 6, 7, 8, 98, 67, 5, 3, 3, 3, };
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] == number)
+                {
+                    Console.WriteLine(true);
+                }
+            }
+
+        }
+
+        public static void filepath()
+        {
+
+            string file_path;
+            file_path = "C:/Users/Dell/Downloads";
+            Console.WriteLine(test2(file_path));
+        }
+        public static string test2(string file_path)
+        {
+            return file_path.Split('/').Last();
+        }
+
+
+        public static void multiplyArray()
+        {
+
+            int[] array = { 5, 8, 6, 8, 5, 9, 2, 7 };
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] *= array.Length;
+                Console.WriteLine(array[i]);
+            }
+        }
+
+        public static void minAndMAxValue()
+        {
+            Console.WriteLine("Enter first Number");
+            string num1 = Console.ReadLine();
+            Console.WriteLine("Enter first Number");
+            string num2 = Console.ReadLine();
+            if (int.Parse(num1) > int.Parse(num2))
+            {
+                Console.WriteLine(num2 + " is minimum");
+            }
+            else
+            {
+                Console.WriteLine(num1 + " is minimum");
+            }
+        }
+
+        public static void minAndMAxValue2()
+        {
+            Console.WriteLine("Enter first Number");
+            string num1 = Console.ReadLine();
+            Console.WriteLine("Enter first Number");
+            string num2 = Console.ReadLine();
+            if (int.Parse(num1) > int.Parse(num2))
+            {
+                Console.WriteLine(num2 + " is minimum");
+            }
+            else
+            {
+                Console.WriteLine(num1 + " is minimum");
+            }
+        }
+        public static string test4(string str1)
+        {
+            return str1.Replace("P", "9").Replace("T", "0").Replace("S", "1").Replace("H", "6").Replace("A", "8");
+        }
+        public static void checkLowerUperCase()
+        {
+            Console.WriteLine("Enter first Number");
+            string name = Console.ReadLine();
+            string newname = name.ToUpper();
+            string newname2 = name.ToLower();
+            if (name == newname || name == newname2)
+            {
+                Console.WriteLine(true);
+            }
+            else
+            {
+                Console.WriteLine("Invalid");
+            }
+
+        }
+        public static void RemovefirstAndLastElement()
+        {
+            Console.WriteLine("Enter first Number");
+            string name = Console.ReadLine();
+            string newname = name.Substring(1, name.Length - 2);
+            Console.WriteLine(newname);
+        }
+
+
+        public static bool Checksimilarconsecutiveletters(string text)
+        {
+            for (int i = 1; i < text.Length; i++)
+            {
+                for (int j = i + 1; j < text.Length; j++)
+                {
+                    if (text[i] == text[j])
+                    {
+                        return true;
+                    }
+
+                }
+            }
+            return false;
+        }
+        public static void swapnumber()
+        {
+            int a = 5;
+            int b = 10;
+            int temp;
+            temp = b;
+            b = a;
+            a = temp;
+            Console.WriteLine("after swap a is :{0}", a + " " + "and b is :" + b);
+        }
+
+        public static void chekArrayHolenumberornot()
+        {
+            double[] array = { 1, 2, 9000.66, 5, -4, 2, 3, 4 };
+            double count = 0;
+            double avg;
+            for (int i = 0; i < array.Length; i++)
+            {
+                count += array[i];
+            }
+            avg = (count / array.Length);
+
+            if (avg % 1 == 0)
+            {
+                Console.WriteLine("Average is a whole number.");
+            }
+            else
+            {
+                Console.WriteLine("Average is not a whole number.");
+            }
+
+        }
+
+        public static void alphabeticalOrder()
+        {
+            Console.WriteLine("Enter your name  ");
+            string input = Console.ReadLine();
+            char[] characters = input.ToCharArray();
+            Array.Sort(characters);
+            string sortedString = new string(characters);
+            Console.WriteLine(sortedString);
+        }
+
+
+
+
+
+        public static void CountArrayElement()
+        {
+            int[] array = { 22, 45, 22, 67, 68, 68, 67, };
+            int[] arr = new int[array.Length];
+            int count = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                bool isCheck = false;
+                foreach (var item in arr)
+                {
+                    if (item == array[i])
+                    {
+                        isCheck = true;
+                    }
+                }
+                arr[i] = array[i];
+
+
+                if (isCheck == false)
+                {
+                    count = 0;
+                    for (int j = 0; j < array.Length; j++)
+                    {
+                        if (array[i] == array[j])
+                        {
+                            count++;
+                        }
+                    }
+                    Console.WriteLine(array[i] + " is count:{0}", count);
+                }
+            }
+
+        }
+
+
+        //----------------------------------------------
+        // loop---------
+        public static void sd()
+        {
+            for (int i = 1; i <= 10; i++)
+            {
+                Console.WriteLine(i);
+
+            }
+
+        }
+
+        public static void sumoffirstarray()
+        {
+            int sum = 0;
+            for (int i = 0; i <= 10; i++)
+            {
+                sum += i;
+            }
+            Console.WriteLine(sum);
+        }
+
+
+        public static void firstNaturalNumber()
+        {
+            int sum = 0;
+            for (int i = 1; i <= 7; i++)
+            {
+                sum += i;
+            }
+            Console.WriteLine(sum);
+        }
+
+
+        public static void AvgAndSome()
+        {
+            int[] inputarray = new int[10];
+            Console.WriteLine(" Enter 10 number ");
+
+            int count = 0;
+            int avg;
+            for (int i = 0; i < 10; i++)
+            {
+                inputarray[i] = int.Parse(Console.ReadLine());
+            }
+            Console.WriteLine("_________________");
+            for (int i = 0; i < inputarray.Length; i++)
+            {
+                count += inputarray[i];
+            }
+            avg = count / 10;
+            Console.WriteLine(avg);
+        }
+
+        public static void vertiacltable()
+        {
+            for (int i = 1; i <= 8; i++)
+            {
+                int result;
+                for (int j = 1; j <= 5; j++)
+                {
+                    result = i * j;
+                    Console.Write(i + " *" + j + "=" + result);
+                }
+            }
+        }
+
+
+        public static void ntermsofOddNaturalNumber()
+        {
+            int sum = 0;
+            Console.WriteLine("enter  any n number ");
+            int number = int.Parse(Console.ReadLine());
+            for (int i = 1; i <= number; i++)
+            {
+                Console.Write("{0} ", 2 *
+                i - 1);
+                sum += 2 * i - 1;
+            }
+            Console.WriteLine(number + " Odd number sum is  :{0}", sum);
+        }
+
+        public static void rightangletriangle()
+        {
+            for (int i = 1; i <= 4; i++)
+            {
+
+                for (int j = 1; j <= i; j++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public static void ritriangleiangleNumber()
+        {
+            for (int i = 1; i <= 4; i++)
+            {
+                for (int j = 1; j <= i; j++)
+                {
+                    Console.Write(j);
+                }
+                Console.WriteLine();
+            }
+
+        }
+        public static void triangleincreasedby1()
+        {
+            int k = 1;
+            for (int i = 1; i <= 4; i++)
+            {
+                for (int j = 1; j <= i; j++)
+                {
+                    Console.Write(" " + k++);
+                }
+                Console.WriteLine(" ");
+            }
+        }
+
+
+        public static void pyramid()
+        {
+            int m = 1;
+            for (int i = 1; i <= 4; i++)
+            {
+                for (int j = 3; j >= i; j--)
+                {
+                    Console.Write(" ");
+                }
+                for (int k = 1; k <= i; k++)
+                {
+                    Console.Write(" " + m++);
+                }
+                Console.WriteLine("");
+            }
+        }
+
+        public static void asteriskpyramid()
+        {
+            for (int i = 1; i <= 4; i++)
+            {
+                for (int j = 3; j >= i; j--)
+                {
+                    Console.Write(" ");
+                }
+                for (int k = 1; k <= i; k++)
+                {
+                    Console.Write(" " + "*");
+                }
+                Console.WriteLine("");
+            }
+        }
+        public static void factorial()
+        {
+            int mul = 1;
+            Console.WriteLine("Enter a number for factorial");
+            int number = int.Parse(Console.ReadLine());
+            for (int i = number; i >= 1; i--)
+            {
+                mul *= i;
+            }
+            Console.WriteLine(number + " ka total factorial h: {0} ", mul);
+        }
+        public static void EvenNumber()
+        {
+            int sum = 0;
+            Console.WriteLine("enter  any n number ");
+            int number = int.Parse(Console.ReadLine());
+            for (int i = 1; i <= number; i++)
+            {
+                Console.Write("{0} ", 2 *
+                i);
+                sum += 2 * i;
+            }
+            Console.WriteLine(number + " even number sum is  :{0}", sum);
+        }
+
+        public static void harmonicSeries()
+        {
+            double data = 0.0;
+            Console.WriteLine("enter  any n number ");
+            int number = int.Parse(Console.ReadLine());
+            for (double i = 1; i <= number; i++)
+            {
+                data += 1 / (float)i;
+            }
+            Console.WriteLine(data);
+        }
+        public static void pyramidOdd()
+        {
+            for (int i = 1; i <= 3; i++)
+            {
+                for (int j = 3; j >= i; j--)
+                {
+                    Console.Write(" ");
+                }
+                for (int k = 1; k <= i * 2 - 1; k++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public static void sumOfSeries()
+        {
+            int s = 9;
+            int sum = 0;
+            Console.WriteLine("enter  any n number ");
+            int number = int.Parse(Console.ReadLine());
+            for (int i = 1; i <= number; i++)
+            {
+                sum += s;
+                s = s * 10 + 9;
+                Console.WriteLine(sum);
+            }
+        }
+
+        public static void Floyd()
+        {
+            int i, j, n, p, q;
+
+            Console.Write("\n\n");
+            Console.Write("Print the Floyd's Triangle:\n");
+            Console.Write("-----------------------------");
+            Console.Write("\n\n");
+
+            Console.Write("Input number of rows : ");
+            n = Convert.ToInt32(Console.ReadLine());
+            for (i = 1; i <= n; i++)
+            {
+                if (i % 2 == 0)
+                { p = 1; q = 0; }
+                else
+                { p = 0; q = 1; }
+                for (j = 1; j <= i; j++)
+                    if (j % 2 == 0)
+                        Console.Write("{0}", p);
+                    else
+                        Console.Write("{0}", q);
+                Console.Write("\n");
+            }
+        }
+
+        public static void SumOfSeries()
+        {
+            int input = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i < input; i++)
+            {
+                 
+                  
+            }
+
+
+        }
+
+    }
+}
+
+
+
+         
+
+    
+
